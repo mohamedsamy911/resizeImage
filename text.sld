@@ -5,7 +5,6 @@
     <UserStyle>
       <se:Name>ICON</se:Name>
       <se:FeatureTypeStyle> 
- 
 <se:Rule>
 <se:Name></se:Name>
 <se:MinScaleDenominator>1</se:MinScaleDenominator>
@@ -13,11 +12,11 @@
 <se:PointSymbolizer>
 <se:Graphic>
     <se:ExternalGraphic>
-      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661370994947/angel_size_200.png?orgId=OlympiCity&amp;category=ICON"/>
+      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661374706883/angel_size_200.png?orgId=OlympiCity&amp;category=ICON"/>
       <se:Format>image/png</se:Format>
     </se:ExternalGraphic>
     <se:ExternalGraphic>
-      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661370994947/angel_size_200.png?orgId=OlympiCity&amp;category=ICON" xlink:type="simple"/>
+      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661374706883/angel_size_200.png?orgId=OlympiCity&amp;category=ICON" xlink:type="simple"/>
       <se:Format>image/png</se:Format>
     </se:ExternalGraphic>
     <se:Mark>
@@ -41,11 +40,11 @@
 <se:PointSymbolizer>
 <se:Graphic>
     <se:ExternalGraphic>
-      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661370995316/angel_size_100.png?orgId=OlympiCity&amp;category=ICON"/>
+      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661374707258/angel_size_100.png?orgId=OlympiCity&amp;category=ICON"/>
       <se:Format>image/png</se:Format>
     </se:ExternalGraphic>
     <se:ExternalGraphic>
-      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661370995316/angel_size_100.png?orgId=OlympiCity&amp;category=ICON" xlink:type="simple"/>
+      <se:OnlineResource xlink:href="http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/downloadFile/1661374707258/angel_size_100.png?orgId=OlympiCity&amp;category=ICON" xlink:type="simple"/>
       <se:Format>image/png</se:Format>
     </se:ExternalGraphic>
     <se:Mark>

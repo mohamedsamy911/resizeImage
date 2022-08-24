@@ -44,7 +44,7 @@ const writeStyle = (req, links) => {
 </se:Rule>`;
     style = style.concat("\n", styleSample);
   }
-  finalStyle = `${styleHeader} \n ${style} \n ${styleFooter}`;
+  finalStyle = `${styleHeader} ${style} \n ${styleFooter}`;
   let file = fs.writeFile("./text.sld", finalStyle, ["utf8"], function (err) {
     if (err) return console.log(err);
   });
