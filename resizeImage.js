@@ -8,6 +8,9 @@ const resizeUpload = async (req, res) => {
   for (let size of req.body.size) {
     let inputFile = fs.createReadStream(req.file.path);
 
+
+
+    
     // output stream
     let outResizedPng = `./output/${req.file.originalname.split(".")[0]}_size_${size}.png`;
 
