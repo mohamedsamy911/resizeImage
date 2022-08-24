@@ -1,0 +1,43 @@
+const fs = require("fs");
+const { default: axios } = require("axios");
+var FormData = require("form-data");
+let finalLinks = [];
+const APICall = async (req, res, img, size) => {
+  let bodyFormData = new FormData();
+  let readFile = fs.createReadStream(img);
+  bodyFormData.append("file", readFile);
+  bodyFormData.append("metadata", `{"category": ${req?.body?.category}}`);
+  var options = {
+    method: "POST",
+    url: "http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/uploadFile",
+    headers: {
+      PentaOrgID: req?.headers?.org,
+      PentaSelectedLocale: req?.headers?.lang,
+      PentaUserRole: req?.headers?.role,
+      ...bodyFormData.getHeaders(),
+    },
+    data: bodyFormData,
+  };
+  await axios(options)
+    .then((e) => {
+      var lin = e.data.fileDownloadUri;
+      lin = `http://olympic.eastus.cloudapp.azure.com:8080${lin.substring(
+        0,
+        lin.lastIndexOf("&") + 1
+      )}amp;${lin.substring(lin.lastIndexOf("&") + 1)}`;
+
+      var uploadedLink = {
+        Size: size,
+        link: lin,
+      };
+      finalLinks.push(uploadedLink);
+    })
+    .catch((err) => {
+      res.json({
+        Error: "Catch Error",
+        err,
+      });
+    });
+  return finalLinks;
+};
+module.exports = APICall;
