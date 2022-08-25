@@ -29,7 +29,6 @@ const APICall = async (req, res, img, size) => {
         Size: size,
         link: lin,
       };
-      console.log(uploadedLink);
       return uploadedLink
     })
     .catch((err) => {
