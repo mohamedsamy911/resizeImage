@@ -33,7 +33,6 @@ const resizeUpload = async (req, res) => {
 
     await new Promise((resolve) => outStream.on("close", resolve));
     let link = await APICall(req, res, outResizedPng, size)
-    console.log(link);
     uploadedLinks.push(link);
   }
   const xmlFile = writeStyle(req, uploadedLinks);
