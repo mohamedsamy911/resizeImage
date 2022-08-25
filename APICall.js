@@ -7,8 +7,8 @@ const APICall = async (req, res, img, size) => {
   bodyFormData.append("file", readFile);
   bodyFormData.append("metadata", `{"category": ${req?.body?.category}}`);
   var options = {
-    method: "POST",
-    url: "http://olympic.eastus.cloudapp.azure.com:8080/penta-service-storage/uploadFile",
+    method: process.env.METHOD,
+    url: process.env.URL,
     headers: {
       PentaOrgID: req?.headers?.org,
       PentaSelectedLocale: req?.headers?.lang,

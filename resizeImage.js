@@ -2,6 +2,7 @@ const sharp = require("sharp");
 const fs = require("fs");
 const APICall = require("./APICall");
 const writeStyle = require("./writeStyle");
+require('dotenv').config()
 
 const resizeUpload = async (req, res) => {
   var uploadedLinks = [];
