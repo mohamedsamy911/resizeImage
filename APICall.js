@@ -1,7 +1,6 @@
 const fs = require("fs");
 const { default: axios } = require("axios");
 var FormData = require("form-data");
-let finalLinks = [];
 const APICall = async (req, res, img, size) => {
   let bodyFormData = new FormData();
   let readFile = fs.createReadStream(img);
@@ -18,7 +17,7 @@ const APICall = async (req, res, img, size) => {
     },
     data: bodyFormData,
   };
-  await axios(options)
+  return await axios(options)
     .then((e) => {
       var lin = e.data.fileDownloadUri;
       lin = `http://olympic.eastus.cloudapp.azure.com:8080${lin.substring(
@@ -30,7 +29,8 @@ const APICall = async (req, res, img, size) => {
         Size: size,
         link: lin,
       };
-      finalLinks.push(uploadedLink);
+      console.log(uploadedLink);
+      return uploadedLink
     })
     .catch((err) => {
       res.json({
@@ -38,6 +38,5 @@ const APICall = async (req, res, img, size) => {
         err,
       });
     });
-  return finalLinks;
 };
 module.exports = APICall;

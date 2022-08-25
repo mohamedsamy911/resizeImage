@@ -1,14 +1,16 @@
 const sharp = require("sharp");
 const fs = require("fs");
-const APICall = require('./APICall')
-const writeStyle = require('./writeStyle')
+const APICall = require("./APICall");
+const writeStyle = require("./writeStyle");
 
 const resizeUpload = async (req, res) => {
-
+  var uploadedLinks = [];
   for (let size of req.body.size) {
-    let inputFile = fs.createReadStream(req.file.path);    
+    let inputFile = fs.createReadStream(req.file.path);
     // output stream
-    let outResizedPng = `./output/${req.file.originalname.split(".")[0]}_size_${size}.png`;
+    let outResizedPng = `./output/${
+      req.file.originalname.split(".")[0]
+    }_size_${size}.png`;
 
     let outStream = fs.createWriteStream(outResizedPng, { flags: "w" });
     // on error of output file being saved
@@ -30,16 +32,13 @@ const resizeUpload = async (req, res) => {
     inputFile.pipe(transform).pipe(outStream);
 
     await new Promise((resolve) => outStream.on("close", resolve));
-    var uploadedLinks = await APICall(req , res , outResizedPng ,size)
-
-    }
-    writeStyle (req, uploadedLinks)
-    res.status(200).json({ 
-      Message : "Success",
-      uploadedLinks });
-      return uploadedLinks
+    let link = await APICall(req, res, outResizedPng, size)
+    console.log(link);
+    uploadedLinks.push(link);
+  }
+  const xmlFile = writeStyle(req, uploadedLinks);
+  res.header("Content-Type", "text/xml");
+  res.send(xmlFile);
 };
-
-
 
 module.exports = resizeUpload;

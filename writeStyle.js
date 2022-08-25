@@ -2,14 +2,14 @@ const fs = require("fs");
 const writeStyle = (req, links) => {
   let finalStyle = "";
   var style = "";
-  var styleHeader = `<?xml version="1.0" encoding="UTF-8"?>
+  const styleHeader = `<?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:se="http://www.opengis.net/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" version="1.1.0">
   <NamedLayer>
     <se:Name>${req.body.category}</se:Name>
     <UserStyle>
       <se:Name>${req.body.category}</se:Name>
       <se:FeatureTypeStyle>`;
-  var styleFooter = `</se:FeatureTypeStyle>
+  const styleFooter = `</se:FeatureTypeStyle>
 </UserStyle>
 </NamedLayer>
 </StyledLayerDescriptor>`;
@@ -45,9 +45,9 @@ const writeStyle = (req, links) => {
     style = style.concat("\n", styleSample);
   }
   finalStyle = `${styleHeader} ${style} \n ${styleFooter}`;
-  let file = fs.writeFile("./text.sld", finalStyle, ["utf8"], function (err) {
+  fs.writeFile(`./SLDs/text_${Date.now()}.sld`, finalStyle, ["utf8"], function (err) {
     if (err) return console.log(err);
   });
-  return file
+  return finalStyle
 };
 module.exports = writeStyle;
