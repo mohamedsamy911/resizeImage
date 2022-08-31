@@ -26,9 +26,12 @@ const APICall = async (req, res, img, size) => {
       )}amp;${lin.substring(lin.lastIndexOf("&") + 1)}`;
 
       var uploadedLink = {
-        Size: size,
+        Size: size.size,
         link: lin,
+        max: size.max,
+        min: size.min
       };
+      console.log(uploadedLink);
       return uploadedLink
     })
     .catch((err) => {
