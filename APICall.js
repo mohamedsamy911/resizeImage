@@ -31,7 +31,6 @@ const APICall = async (req, res, img, size) => {
         max: size.max,
         min: size.min
       };
-      console.log(uploadedLink);
       return uploadedLink
     })
     .catch((err) => {

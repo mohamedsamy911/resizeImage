@@ -6,8 +6,8 @@ const parseToJSON = (req , res) =>{
         }
         return sentJson
     } catch (error) {
-        res.json({
-            Error : error
+        res.status(500).json({
+            Error : "Pleasse check Size"
         })
     }
 
