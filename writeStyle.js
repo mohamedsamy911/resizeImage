@@ -5,7 +5,8 @@ const {
   getStatusCode,
 } = require("http-status-codes");
 const fs = require("fs");
-const writeStyle = (req, res, links) => {
+const { createStyle } = require("./callGeoserver");
+const writeStyle = async (req, res, links) => {
   try {
     let finalStyle = "";
     var style = "";
@@ -52,6 +53,7 @@ const writeStyle = (req, res, links) => {
       style = style.concat("\n", styleSample);
     }
     finalStyle = `${styleHeader} ${style} \n ${styleFooter}`;
+    await createStyle(req , res , finalStyle)
     fs.writeFile(
       `./SLDs/text_${Date.now()}.sld`,
       finalStyle,
@@ -60,11 +62,11 @@ const writeStyle = (req, res, links) => {
         if (err) return console.log(err);
       }
     );
-    return finalStyle;
   } catch (error) {
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      Error : error
-    })
+    console.log(error);
+    // res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    //   Error : error
+    // })
   }
 };
 module.exports = writeStyle;

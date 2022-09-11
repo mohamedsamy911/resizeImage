@@ -34,6 +34,7 @@ const APICall = async (req, res, img, size) => {
       return uploadedLink
     })
     .catch((err) => {
+      console.log(err);
       res.json({
         Error: "Catch Error",
         err,

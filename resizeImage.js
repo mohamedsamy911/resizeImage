@@ -2,14 +2,13 @@ const sharp = require("sharp");
 const fs = require("fs");
 const APICall = require("./APICall");
 const writeStyle = require("./writeStyle");
-const parseToJSON = require("./parseToJSON");
+// const parseToJSON = require("./parseToJSON");
 require("dotenv").config();
 
 const resizeUpload = async (req, res) => {
   try {
     var uploadedLinks = [];
-    let sentLinks = parseToJSON(req, res);
-    for (let size of sentLinks) {
+    for (let size of JSON.parse(req.body.size)) {
       let inputFile = fs.createReadStream(req.file.path);
       // output stream
       let outResizedPng = `./output/${
@@ -39,9 +38,7 @@ const resizeUpload = async (req, res) => {
       let link = await APICall(req, res, outResizedPng, size);
       uploadedLinks.push(link);
     }
-    const xmlFile = writeStyle(req, res, uploadedLinks);
-    res.header("Content-Type", "text/xml");
-    res.send(xmlFile);
+    writeStyle(req, res, uploadedLinks);
   } catch (error) {
     console.log(error);
   }
