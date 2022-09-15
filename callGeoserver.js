@@ -1,4 +1,4 @@
-const { GeoServerRestClient } = require("geoserver-node-client");
+const { GeoServerRestClient ,GeoServerResponseError } = require("geoserver-node-client");
 
 const getAllLayers = async (req, res) => {
   const url = `${req.body.url}/rest/`;
@@ -14,11 +14,14 @@ const getAllLayers = async (req, res) => {
       Styles: allStyles,
     });
   } catch (error) {
-    console.log(error);
     if (error instanceof GeoServerResponseError) {
-      // a GeoServer specific error happened
+      res.status(401).json({
+        error
+      })
     } else {
-      // another error happened
+      res.status(500).json({
+        error
+      })
     }
   }
 };
